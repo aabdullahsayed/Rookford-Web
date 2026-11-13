@@ -1028,7 +1028,14 @@ function AdminApp({ onExit }) {
    CSS
    ==================================================================== */
 const CSS = `
-:root{--paper:#e6e5e1;--paper-2:#d8d7d2;--cream:#efeeea;--ink:#14171b;--ink-2:#4a4f56;--indigo:#1f252c;--indigo-2:#2f3842;--saddle:#a8794d;--saddle-d:#7a5230;--rust:#9b3a26;--line:#c2c1bb;--serif:'Fraunces',Georgia,'Times New Roman',serif;--sans:'Inter Tight','Helvetica Neue',Arial,sans-serif;--display:'Barlow Condensed','Oswald','Arial Narrow',sans-serif;--ease:cubic-bezier(.22,.8,.24,1)}
+@font-face {
+  font-family: 'Redaction 35';
+  src: url('https://cdn.jsdelivr.net/gh/motaen/redaction/fonts/web/Redaction35-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root{--paper:#e6e5e1;--paper-2:#d8d7d2;--cream:#efeeea;--ink:#14171b;--ink-2:#4a4f56;--indigo:#1f252c;--indigo-2:#2f3842;--saddle:#a8794d;--saddle-d:#7a5230;--rust:#9b3a26;--line:#c2c1bb;--serif:'Redaction 35',Georgia,'Times New Roman',serif;--sans:'Inter Tight','Helvetica Neue',Arial,sans-serif;--display:'Redaction 35','Oswald','Arial Narrow',serif;--ease:cubic-bezier(.22,.8,.24,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
