@@ -34,7 +34,7 @@ const INS = ["Uncut (34 in)", "32 in", "30 in", "Custom — see note"];
 const SHIP = {
   std: { n: "Standard delivery", t: "5–9 business days · free over $250, otherwise $15", p: 15 },
   exp: { n: "Express delivery", t: "2–4 business days · $35", p: 35 },
-  pick: { n: "Studio pickup", t: "SoHo atelier · ready in 48 hours · free", p: 0 },
+  pick: { n: "Studio pickup", t: "Dhaka atelier · ready in 48 hours · free", p: 0 },
 };
 const PAY = {
   card: { n: "Card payment", t: "A secure payment link is sent once you confirm", f: 0 },
@@ -46,12 +46,12 @@ const COUNTRIES = [
   "Italy", "Japan", "Singapore", "United Arab Emirates", "India", "Bangladesh", "Other",
 ];
 const ANNOUNCEMENTS = [
-  "Free worldwide shipping over $250",
+  "Free shipping over $250",
   "Complimentary chainstitch hemming on every pair",
   "Repaired for life at our workshop",
 ];
 const TICKER = [
-  "Shuttle-loom selvedge", "Woven in Kojima", "Free chainstitch hemming",
+  "Shuttle-loom selvedge", "Woven in Bangladesh", "Free chainstitch hemming",
   "Copper hardware", "Repaired for life", "Raw, rigid, real", "Made to be worn hard",
 ];
 
@@ -334,7 +334,7 @@ function LineNote({ value, onChange }) {
    CHECKOUT
    ==================================================================== */
 function Checkout({ open, cart, totals, onClose, onEditBag }) {
-  const [cust, setCust] = useState(() => store.get("rf_cust", { country: "United States", contact: "Email" }));
+  const [cust, setCust] = useState(() => store.get("rf_cust", { country: "Bangladesh", contact: "Email" }));
   const [opt, setOpt] = useState({ ship: "std", pay: "card", hem: "", gift: false, giftMsg: "", notes: "", terms: false });
   const [step, setStep] = useState(1);
   const [errs, setErrs] = useState({});
@@ -537,7 +537,7 @@ function Checkout({ open, cart, totals, onClose, onEditBag }) {
           {fld("fn", "First name", { req: 1, ac: "given-name" })}
           {fld("ln", "Last name", { req: 1, ac: "family-name" })}
           {fld("email", "Email", { req: 1, type: "email", ac: "email", ph: "you@example.com" })}
-          {fld("phone", "Phone number", { req: 1, type: "tel", ac: "tel", ph: "+1 555 000 0000" })}
+          {fld("phone", "Phone number", { req: 1, type: "tel", ac: "tel", ph: "+880 1XXX XXX XXX" })}
           {fld("wa", "WhatsApp number (optional)", { type: "tel", full: 1, ph: "If different from phone" })}
         </div>
         <h3 className="co-sub">Delivery address</h3>
@@ -1078,7 +1078,7 @@ header.nav.scrolled{border-color:var(--line)}
 .nav-links a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;position:relative;padding:6px 0}
 .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--ink);transition:right .35s var(--ease)}
 .nav-links a:hover::after{right:0}
-.logo{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:.34em;text-indent:.34em;text-align:center;line-height:1;text-transform:uppercase}
+.logo{font-family:'Redaction 35','Oswald','Arial Narrow',serif;font-weight:700;font-size:30px;letter-spacing:.34em;text-indent:.34em;text-align:center;line-height:1;text-transform:uppercase}
 .nav-tools{display:flex;justify-content:flex-end;gap:6px;align-items:center}
 .ico{position:relative;width:42px;height:42px;display:grid;place-items:center;transition:color .2s}
 .ico:hover{color:var(--saddle-d)}
@@ -1108,7 +1108,6 @@ header.nav.scrolled{border-color:var(--line)}
 .hero-art .layer{transition:transform .6s var(--ease);will-change:transform}
 .twill{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;opacity:.7;background:repeating-linear-gradient(115deg,rgba(255,255,255,.07) 0 2px,rgba(0,0,0,.09) 2px 4px)}
 
-/* ── Cowboy brand stamp badge ── */
 .hero-badge{position:absolute;right:28px;bottom:28px;width:152px;height:152px;color:var(--paper);z-index:3}
 .hero-badge svg{width:100%;height:100%;display:block}
 .hero-cap{position:absolute;left:28px;bottom:28px;color:var(--paper);font-size:11px;letter-spacing:.2em;text-transform:uppercase;max-width:240px;line-height:1.7;z-index:3}
@@ -2007,7 +2006,7 @@ export default function RookfordStore() {
             </div>
             <div className="hero-meta rv d3">
               <div><b>15.5<small style={{ fontSize: 14 }}>oz</small></b><span>Selvedge twill</span></div>
-              <div><b>1968</b><span>Toyoda looms</span></div>
+              <div><b>1980s</b><span>Denim heritage</span></div>
               <div><b>∞</b><span>Free repairs</span></div>
             </div>
           </div>
@@ -2073,10 +2072,10 @@ export default function RookfordStore() {
             </div>
 
             <div className="hero-cap">
-              Cut from 15.5oz sulfur-dyed selvedge.<br />Woven in Kojima. Finished in SoHo.
+              Cut from 15.5oz sulfur-dyed selvedge.<br />Woven in Bangladesh.
             </div>
 
-            {/* COWBOY BRAND STAMP */}
+            {/* BRAND STAMP */}
             <div className="hero-badge" aria-hidden="true">
               <svg viewBox="0 0 140 140">
                 <defs>
@@ -2093,7 +2092,6 @@ export default function RookfordStore() {
                 >
                   <textPath href="#badgeArc" startOffset="50%" textAnchor="middle">ROOKFORD</textPath>
                 </text>
-                {/* 5-point star */}
                 <path
                   d="M70 50 l4.9 11.3 12.3 0.9 -9.4 8 3 12.1 -10.8 -6.4 -10.8 6.4 3 -12.1 -9.4 -8 12.3 -0.9 z"
                   fill="currentColor"
@@ -2107,7 +2105,7 @@ export default function RookfordStore() {
                   x="70" y="110" textAnchor="middle"
                   fontFamily="'Barlow Condensed',sans-serif"
                   fontWeight="500" fontSize="5.5" letterSpacing="2.4" fill="currentColor" opacity=".6"
-                >KOJIMA · JAPAN</text>
+                >DHAKA · BANGLADESH</text>
               </svg>
             </div>
           </div>
@@ -2283,20 +2281,22 @@ export default function RookfordStore() {
                   <path d="M25 28C50 38 100 38 125 28L124 40C100 48 50 48 26 40Z" fill="#8d8272" />
                 </g>
               </svg>
-              <span className="tag">Plate Nº 12 — Dusk on the mesa</span>
+              <span className="tag">Plate Nº 12 — Dusk on the delta</span>
             </div>
             <div className="edit-copy">
               <span className="eyebrow rv">From the Journal</span>
               <h2 className="h-lg rv d1">Not made to<br /><em>stay new.</em></h2>
               <p className="drop rv d1">
-                Rookford began with a simple idea: a pair of jeans should get better the harder you work
-                in them. We found a mill in Kojima still running Toyoda shuttle looms from 1968 and asked
-                them to weave slowly, the way it used to be done.
+                Rookford began with a simple idea: a pair of jeans should get better the harder you
+                work in them. We partner with mills in Bangladesh — heir to a textile legacy that
+                gave the world Dhaka muslin, once called “woven air” — where skilled hands still run
+                shuttle looms the slow way.
               </p>
               <p className="rv d2">
-                Low-tension weaving gives each yard its own uneven, imperfect character. Rope-dyed yarn
-                leaves the heart of every thread undyed so that, with wear, the cloth fades from midnight
-                to the pale blue of an open sky.
+                Bangladesh is now one of the world’s great denim workshops. Low-tension weaving
+                gives each yard its own uneven, imperfect character. Rope-dyed yarn leaves the heart
+                of every thread undyed so that, with wear, the cloth fades from midnight to the
+                pale blue of an open sky.
               </p>
               <div className="pull rv d2">“Buy it once. Wear it hard. Bring it back when it needs mending.”</div>
               <a href="#journal" className="link rv d3" onClick={(e) => { e.preventDefault(); goTo("#journal"); }}>
@@ -2358,7 +2358,7 @@ export default function RookfordStore() {
           </div>
           <div className="rail" ref={railRef}>
             {[
-              { n: "01", bg: "linear-gradient(170deg,#444e5a,#1b2027)", h: "First light, Marfa", p: "Raw straight jeans with the Marshal chore coat.", fill: "#0a111d", d: "M0 120V70h50l8-24h40l8 24h60l8-40h60l8 40h58v50z" },
+              { n: "01", bg: "linear-gradient(170deg,#444e5a,#1b2027)", h: "First light, Dhaka", p: "Raw straight jeans with the Marshal chore coat.", fill: "#0a111d", d: "M0 120V70h50l8-24h40l8 24h60l8-40h60l8 40h58v50z" },
               { n: "02", bg: "linear-gradient(170deg,#b3ac9d,#625b50)", h: "Dust & diesel", p: "Saddle tan canvas, ecru relaxed denim, bone felt hat.", fill: "#3a2214", d: "M0 120V80h70l10-30h50l10 30h70l8-44h82v84z" },
               { n: "03", bg: "linear-gradient(170deg,#aab2ba,#59626d)", h: "Blue hour", p: "Dusk-wash western shirts layered over raw indigo.", fill: "#1a2a44", d: "M0 120V60h60l12-30h50l8 30h80l10-34h80v94z" },
               { n: "04", bg: "linear-gradient(170deg,#4a4e57,#14161a)", h: "Night shift", p: "Washed black everything. Quiet, heavy, uncompromising.", fill: "#000", d: "M0 120V76h80l10-36h46l10 36h60l12-50h82v94z" },
@@ -2492,8 +2492,7 @@ export default function RookfordStore() {
             <div>
               {logoNode}
               <p>
-                Selvedge denim woven in Kojima and finished by hand in SoHo. Made to be worn, mended and
-                handed down.
+                Selvedge denim woven in Bangladesh. Made to be worn, mended and handed down.
               </p>
             </div>
             <div className="f-col">
@@ -2522,7 +2521,7 @@ export default function RookfordStore() {
           </div>
           <div className="f-bot">
             <span>© 2026 Rookford Frontier Denim Co.</span>
-            <span>Woven in Kojima · Finished in SoHo</span>
+            <span>Made in Bangladesh</span>
           </div>
         </div>
       </footer>
@@ -2546,9 +2545,9 @@ export default function RookfordStore() {
         <div className="ship">
           {cart.length
             ? (totals.tot >= FREE_SHIPPING
-                ? <b>You’ve unlocked free worldwide shipping</b>
+                ? <b>You’ve unlocked free shipping</b>
                 : <>You’re <b>{money(FREE_SHIPPING - totals.tot)}</b> away from free shipping</>)
-            : <>Free worldwide shipping over {money(FREE_SHIPPING)}</>}
+            : <>Free shipping over {money(FREE_SHIPPING)}</>}
           <div className="bar">
             <i style={{ width: `${Math.min(100, (totals.tot / FREE_SHIPPING) * 100)}%` }} />
           </div>
@@ -2612,7 +2611,7 @@ export default function RookfordStore() {
             <button className="btn solid" onClick={openCheckout}>
               Checkout <span className="arrow">→</span>
             </button>
-            <small>Chainstitch hemming included. Duties handled for you.</small>
+            <small>Chainstitch hemming included. Duties handled for you. Made in Bangladesh.</small>
           </div>
         )}
       </aside>
@@ -2729,7 +2728,7 @@ export default function RookfordStore() {
                   {qv.product.fit && <details><summary>Fit</summary><p>{qv.product.fit}</p></details>}
                   <details>
                     <summary>Shipping &amp; care</summary>
-                    <p>Free worldwide over {money(FREE_SHIPPING)}. Free 30-day returns. Free chainstitch hemming and lifetime repairs.</p>
+                    <p>Free shipping over {money(FREE_SHIPPING)}. Free 30-day returns. Free chainstitch hemming and lifetime repairs. Made in Bangladesh.</p>
                   </details>
                 </div>
               </div>
