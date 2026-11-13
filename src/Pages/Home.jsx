@@ -1521,45 +1521,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;op
 `;
 
 /* ====================================================================
-   MAIN
+   STORE APP — the storefront body (all store hooks live here)
    ==================================================================== */
-export default function RookfordStore() {
-  const [route, setRoute] = useState(() => {
-    if (typeof window === "undefined") return "store";
-    return window.location.hash === "#admin" ? "admin" : "store";
-  });
-
-  // Inject meta viewport for mobile layout handling in sandboxes (CodeSandbox/CodePen)
-  useEffect(() => {
-    if (typeof document !== 'undefined' && !document.querySelector("meta[name='viewport']")) {
-      const meta = document.createElement("meta");
-      meta.name = "viewport";
-      meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
-      document.head.appendChild(meta);
-    }
-  }, []);
-
-  useEffect(() => {
-    const onHash = () => setRoute(window.location.hash === "#admin" ? "admin" : "store");
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
-  }, []);
-
-  /* ------------------------------------------------------------------
-     ADMIN ROUTE
-  ------------------------------------------------------------------ */
-  if (route === "admin") {
-    return (
-      <>
-        <style dangerouslySetInnerHTML={{ __html: CSS }} />
-        <AdminApp onExit={() => { window.location.hash = ""; setRoute("store"); }} />
-      </>
-    );
-  }
-
-  /* ------------------------------------------------------------------
-     STORE STATE
-  ------------------------------------------------------------------ */
+function StoreApp() {
   const [products, setProducts] = useState([]);
   const [productsLoading, setProductsLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
@@ -2514,7 +2478,7 @@ export default function RookfordStore() {
               <a href="#craft" onClick={(e) => { e.preventDefault(); goTo("#craft"); }}>Our craft</a>
               <a href="#journal" onClick={(e) => { e.preventDefault(); goTo("#journal"); }}>Journal</a>
               <a href="#lookbook" onClick={(e) => { e.preventDefault(); goTo("#lookbook"); }}>Lookbook</a>
-              <a href="#admin" onClick={(e) => { e.preventDefault(); window.location.hash = "admin"; setRoute("admin"); }}>
+              <a href="#admin" onClick={(e) => { e.preventDefault(); window.location.hash = "admin"; }}>
                 Admin
               </a>
             </div>
@@ -2798,4 +2762,47 @@ export default function RookfordStore() {
       </button>
     </div>
   );
+}
+
+/* ====================================================================
+   ROOT — routes between store and admin
+   Only 3 hooks here, always in the same order. No conditional hooks.
+   ==================================================================== */
+export default function RookfordStore() {
+  const [route, setRoute] = useState(() => {
+    if (typeof window === "undefined") return "store";
+    return window.location.hash === "#admin" ? "admin" : "store";
+  });
+
+  useEffect(() => {
+    if (typeof document !== "undefined" && !document.querySelector("meta[name='viewport']")) {
+      const meta = document.createElement("meta");
+      meta.name = "viewport";
+      meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+      document.head.appendChild(meta);
+    }
+  }, []);
+
+  useEffect(() => {
+    const onHash = () =>
+      setRoute(window.location.hash === "#admin" ? "admin" : "store");
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  if (route === "admin") {
+    return (
+      <>
+        <style dangerouslySetInnerHTML={{ __html: CSS }} />
+        <AdminApp
+          onExit={() => {
+            window.location.hash = "";
+            setRoute("store");
+          }}
+        />
+      </>
+    );
+  }
+
+  return <StoreApp />;
 }
