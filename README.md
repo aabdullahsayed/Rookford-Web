@@ -1,16 +1,35 @@
-# React + Vite
+# Rookford 
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+src/
+├─ pages/
+│  └─ Home.jsx                 Root: switches between Store and Admin (#admin)
+│
+├─ features/
+│  ├─ store/
+│  │  ├─ StoreApp.jsx          All store state + handlers, composes the pieces below
+│  │  ├─ sections/             Page sections, top to bottom
+│  │  │   AnnouncementBar · Navbar · MobileNav · Hero · Ticker · Collections
+│  │  │   Shop · Editorial · FadeGuide · Lookbook · Craft · Journal
+│  │  │   Reviews · Newsletter · Footer
+│  │  ├─ overlays/             BagDrawer · QuickView · SearchOverlay · Toast · BackToTop
+│  │  └─ components/           HeartIcon · Stat · LineNote
+│  ├─ checkout/
+│  │  └─ Checkout.jsx          3-step checkout
+│  └─ admin/
+│     AdminApp · AdminLogin · AdminProducts · AdminProductForm · AdminOrders
+│
+├─ lib/
+│  ├─ api.js                   API endpoints + getJSON
+│  ├─ constants.js             Shipping, payment, countries, ticker, announcements …
+│  ├─ helpers.js               money, esc, store (localStorage), normalizeProduct …
+│  └─ garments/                SVG garment illustration engine
+│      engine.js · jeans.js · jacket.js · shirt.js · hat.js · index.js (garment())
+│
+└─ styles/
+   ├─ index.js                 Joins all parts into `CSS` (order matters, same as original)
+   └─ base · announcementNav · hero · tickerSections · collections · shop · editorial
+      fade · lookbook · craft · journal · reviews · newsletter · footer · overlays
+      quickView · search · toastTotop · checkout · hero3d · grain · admin · responsive
+```
