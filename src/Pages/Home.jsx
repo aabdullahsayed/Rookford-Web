@@ -4,9 +4,10 @@ import { StoreApp } from "../features/store/StoreApp";
 import { CSS } from "../styles/index";
 
 export default function RookfordStore() {
+  // 1. Initialize route by checking the pathname instead of the hash
   const [route, setRoute] = useState(() => {
     if (typeof window === "undefined") return "store";
-    return window.location.hash === "#admin" ? "admin" : "store";
+    return window.location.pathname.startsWith("/admin") ? "admin" : "store";
   });
 
   useEffect(() => {
@@ -18,23 +19,26 @@ export default function RookfordStore() {
     }
   }, []);
 
+  // 2. Listen to popstate (browser back/forward) instead of hashchange
   useEffect(() => {
-    const onHash = () =>
-      setRoute(window.location.hash === "#admin" ? "admin" : "store");
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
+    const onPopState = () => {
+      setRoute(window.location.pathname.startsWith("/admin") ? "admin" : "store");
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
+
+  // 3. Handle exit by pushing the root path and updating state
+  const handleExit = () => {
+    window.history.pushState({}, "", "/");
+    setRoute("store");
+  };
 
   if (route === "admin") {
     return (
       <>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
-        <AdminApp
-          onExit={() => {
-            window.location.hash = "";
-            setRoute("store");
-          }}
-        />
+        <AdminApp onExit={handleExit} />
       </>
     );
   }
