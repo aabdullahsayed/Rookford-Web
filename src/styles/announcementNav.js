@@ -17,7 +17,7 @@ header.nav{
   transition:border-color .4s var(--ease-smooth),background .4s var(--ease-smooth);
 }
 header.nav.scrolled{border-color:var(--line);background:rgba(234,232,227,.94)}
-.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:78px}
+.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
 .nav-links{display:flex;gap:36px}
 .nav-links a{
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
@@ -29,8 +29,13 @@ header.nav.scrolled{border-color:var(--line);background:rgba(234,232,227,.94)}
 }
 .nav-links a:hover::after{right:0}
 .logo{
-  font-family:'Redaction 35','Oswald','Arial Narrow',serif;font-weight:700;
-  font-size:28px;letter-spacing:.36em;text-indent:.36em;text-align:center;line-height:1;
+  font-family:'BBH Bogle','Redaction 35','Oswald','Arial Narrow',serif;
+  font-weight:400;
+  font-size:34px;
+  letter-spacing:.05em;
+  text-indent:.05em;
+  text-align:center;
+  line-height:1;
   text-transform:uppercase;
 }
 .nav-tools{display:flex;justify-content:flex-end;gap:4px;align-items:center}
@@ -50,8 +55,8 @@ header.nav.scrolled{border-color:var(--line);background:rgba(234,232,227,.94)}
 .burger{display:none}
 @media(max-width:900px){
   .nav-links{display:none}.burger{display:grid}
-  .nav-in{grid-template-columns:auto 1fr auto;height:64px}
-  .logo{font-size:20px;letter-spacing:.3em;text-indent:.3em}
+  .nav-in{grid-template-columns:auto 1fr auto;height:56px}
+  .logo{font-size:24px;letter-spacing:.05em;text-indent:.05em}
 }
 .mnav{
   position:fixed;inset:0;background:var(--indigo);color:var(--paper);z-index:90;
