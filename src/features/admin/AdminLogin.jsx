@@ -33,24 +33,52 @@ export function AdminLogin({ onLogin, onExit }) {
       <form className="admin-login-card" onSubmit={submit}>
         <div className="admin-brand">ROOKFORD</div>
         <p className="admin-kicker">Admin Console</p>
-        <h1>Sign in</h1>
-        <p className="admin-sub">Manage products, orders and the shop.</p>
+        
+        <h1>Welcome back</h1>
+        <p className="admin-sub">Enter your credentials to access the ERP.</p>
+        
         {err && <div className="admin-err">{err}</div>}
+        
         <div className="fld">
-          <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <label>Email Address</label>
+          <input 
+            type="email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            placeholder="admin@rookford.com"
+            required 
+          />
         </div>
+        
         <div className="fld">
           <label>Password</label>
-          <input type="password" value={pw} onChange={(e) => setPw(e.target.value)} required />
+          <input 
+            type="password" 
+            value={pw} 
+            onChange={(e) => setPw(e.target.value)} 
+            placeholder="••••••••"
+            required 
+          />
         </div>
-        <button className="btn solid" type="submit" disabled={busy} style={{ width: "100%", justifyContent: "center", marginTop: 8 }}>
-          {busy ? "Signing in…" : "Sign in →"}
+        
+        <button 
+          className="btn solid" 
+          type="submit" 
+          disabled={busy} 
+          style={{ width: "100%", justifyContent: "center", marginTop: "12px", padding: "16px" }}
+        >
+          {busy ? "Authenticating…" : "Sign in to Dashboard →"}
         </button>
-        <div style={{ textAlign: "center", marginTop: 18 }}>
-          <button type="button" className="link" onClick={onExit}>← Back to store</button>
+        
+        <div style={{ textAlign: "center", marginTop: 20 }}>
+          <button type="button" className="link" onClick={onExit}>
+            ← Back to store
+          </button>
         </div>
-        <div className="admin-hint">Demo: admin@rookford.com / admin</div>
+        
+        <div className="admin-hint">
+          Demo access: admin@rookford.com / admin
+        </div>
       </form>
     </div>
   );

@@ -8,7 +8,7 @@ export function AdminApp({ onExit }) {
   const [token, setToken] = useState(() => store.get("rf_admin_token", ""));
   const [view, setView] = useState("dashboard");
 
-  // 💡 Add state for your dashboard stats (currently empty/zero)
+  // Dynamic state for dashboard stats
   const [stats, setStats] = useState({
     revenue: 0,
     orders: 0,
@@ -31,10 +31,15 @@ export function AdminApp({ onExit }) {
   const IconExit = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>;
   const IconLogout = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>;
 
+  const handleSignOut = () => {
+    setToken("");
+    store.set("rf_admin_token", "");
+  };
+
   return (
     <div className="erp-shell">
       
-      {/* DESKTOP SIDEBAR */}
+      {/* DESKTOP SIDEBAR (Hidden on Mobile) */}
       <aside className="erp-side">
         <div className="erp-brand">
           ROOKFORD <span>Admin</span>
@@ -56,7 +61,7 @@ export function AdminApp({ onExit }) {
           <button className="erp-link" onClick={onExit}>
             <IconExit /> Back to Store
           </button>
-          <button className="erp-link" onClick={() => { setToken(""); store.set("rf_admin_token", ""); }}>
+          <button className="erp-link" onClick={handleSignOut}>
             <IconLogout /> Sign Out
           </button>
         </div>
@@ -80,19 +85,16 @@ export function AdminApp({ onExit }) {
             <div className="erp-dashboard">
               <div className="erp-card">
                 <span>Total Revenue</span>
-                {/* 💡 Fixed: Using dynamic state instead of hardcoded $12,450 */}
                 <b>{stats.revenue > 0 ? `$${stats.revenue.toLocaleString()}` : "—"}</b>
                 <small className="up">Waiting for data</small>
               </div>
               <div className="erp-card">
                 <span>Orders</span>
-                {/* 💡 Fixed: Using dynamic state instead of hardcoded 84 */}
                 <b>{stats.orders > 0 ? stats.orders : "—"}</b>
                 <small className="up">Waiting for data</small>
               </div>
               <div className="erp-card">
                 <span>Active Products</span>
-                {/* 💡 Fixed: Using dynamic state instead of hardcoded 24 */}
                 <b>{stats.products > 0 ? stats.products : "—"}</b>
                 <small>Waiting for data</small>
               </div>
@@ -104,7 +106,7 @@ export function AdminApp({ onExit }) {
         </div>
       </main>
 
-      {/* MOBILE BOTTOM NAVIGATION */}
+      {/* MOBILE BOTTOM NAVIGATION (Visible only on Mobile) */}
       <nav className="erp-bottom-nav">
         <button className={view === "dashboard" ? "on" : ""} onClick={() => setView("dashboard")}>
           <IconDashboard /> <span>Home</span>
@@ -114,6 +116,11 @@ export function AdminApp({ onExit }) {
         </button>
         <button className={view === "orders" ? "on" : ""} onClick={() => setView("orders")}>
           <IconOrders /> <span>Orders</span>
+        </button>
+        
+        {/* 4th Item: Mobile Sign Out Button */}
+        <button onClick={handleSignOut} style={{ color: "var(--rust)" }}>
+          <IconLogout /> <span>Sign Out</span>
         </button>
       </nav>
 
