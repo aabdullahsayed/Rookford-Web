@@ -162,7 +162,7 @@ export default `
 }
 .erp-card small.up { color: #2e7d32; }
 
-/* --- MOBILE BOTTOM NAVIGATION --- */
+/* --- MOBILE BOTTOM NAVIGATION (Base) --- */
 .erp-bottom-nav {
   display: none; /* Hidden on desktop */
 }
@@ -257,27 +257,103 @@ export default `
 }
 .admin-actions{display:flex;gap:10px;flex-wrap:wrap}
 
-/* LOGIN SCREEN */
-.admin-login{min-height:100vh;display:grid;place-items:center;padding:40px 20px;background:radial-gradient(ellipse at top,#1a1f26,#0e1218)}
+/* ============ PREMIUM LOGIN SCREEN ============ */
+.admin-login{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:40px 20px;
+  /* Deep indigo gradient with subtle denim twill texture */
+  background: radial-gradient(circle at 50% 0%, #2b323a 0%, #16181b 80%);
+  background-image: 
+    repeating-linear-gradient(115deg, rgba(255,255,255,.02) 0 2px, rgba(0,0,0,.1) 2px 4px),
+    radial-gradient(circle at 50% 0%, #2b323a 0%, #16181b 80%);
+}
+
 .admin-login-card{
-  width:100%;max-width:400px;background:var(--cream);
-  padding:clamp(28px,5vw,44px);box-shadow:0 40px 100px -40px rgba(0,0,0,.6);
+  width:100%;
+  max-width:420px;
+  background:var(--cream);
+  padding:clamp(32px, 5vw, 48px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  box-shadow: 0 24px 64px -12px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.8);
+  position:relative;
+  overflow:hidden;
 }
+
+/* Add a subtle rope detail at the top of the login card */
+.admin-login-card::before {
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0;
+  height:4px;
+  background:repeating-linear-gradient(135deg,var(--saddle) 0 6px,#d9a56a 6px 9px,var(--saddle-d) 9px 12px);
+}
+
 .admin-brand{
-  font-family:var(--brand);font-weight:700;font-size:24px;letter-spacing:.06em;
-  text-indent:.06em;text-align:center;text-transform:uppercase;color:var(--ink);
+  font-family:var(--brand);
+  font-weight:400;
+  font-size:26px;
+  letter-spacing:.06em;
+  text-indent:.06em;
+  text-align:center;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:4px;
 }
+
 .admin-kicker{
-  font-size:10px;letter-spacing:.42em;text-transform:uppercase;
-  color:var(--saddle-d);text-align:center;margin:8px 0 24px;font-weight:600;
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--saddle-d);
+  text-align:center;
+  margin-bottom:28px;
+  font-weight:600;
 }
-.admin-login-card h1{font-family:var(--display);font-size:32px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:8px;letter-spacing:-.01em}
-.admin-sub{font-size:13px;color:var(--ink-2);text-align:center;margin-bottom:28px;line-height:1.6}
-.admin-login-card .fld{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+
+.admin-login-card h1{font-family:var(--display);font-size:32px;font-weight:600;text-transform:uppercase;text-align:center;margin-bottom:6px;letter-spacing:-.01em}
+.admin-sub{font-size:13.5px;color:var(--ink-2);text-align:center;margin-bottom:32px;line-height:1.6}
+
+.admin-login-card .fld{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
 .admin-login-card label{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
-.admin-login-card input{padding:13px 14px;border:1px solid var(--line);background:var(--paper);font:inherit;font-size:16px;transition:border-color .3s var(--ease-smooth)}
-.admin-login-card input:focus{outline:0;border-color:var(--ink)}
-.admin-err{background:#f5e6e2;color:var(--rust);padding:12px 16px;font-size:13px;margin-bottom:16px;border:1px solid #e5c5bd}
-.admin-hint{text-align:center;margin-top:18px;font-size:11px;color:var(--ink-2)}
+.admin-login-card input{
+  padding:14px 16px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  font:inherit;
+  font-size:15px;
+  color:var(--ink);
+  border-radius:6px;
+  transition:all .3s var(--ease-smooth);
+}
+.admin-login-card input:focus{
+  outline:0;
+  border-color:var(--ink);
+  background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.03);
+}
+
+.admin-err{
+  background:rgba(152,64,44,.08);
+  color:var(--rust);
+  padding:12px 16px;
+  font-size:13px;
+  margin-bottom:20px;
+  border:1px solid rgba(152,64,44,.2);
+  border-radius:6px;
+  text-align:center;
+}
+
+.admin-hint{
+  text-align:center;
+  margin-top:24px;
+  font-size:11.5px;
+  color:var(--ink-2);
+  padding-top:16px;
+  border-top:1px dashed var(--line);
+}
 
 `;
